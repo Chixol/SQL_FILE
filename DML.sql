@@ -47,3 +47,17 @@ DELETE FROM example_table WHERE int_column = 50;
 DELETE FROM example_table;
 
 TRUNCATE TABLE example_table;
+
+create table auto_table(
+	idx int primary key auto_increment,
+    num int
+);
+
+insert into auto_table (num) values (0);
+select * from auto_table;
+delete from auto_table;
+truncate table auto_table;
+
+-- DROP TABLE: DDL 테이블의 구조 전체를 제거
+-- TRUNCATE TABLE: DDL 테이블의 구조만 남기고 초기화
+-- DELETE FROM: DML 테이블에서 데이터만 제거
