@@ -1,5 +1,11 @@
 use practice_sql;
 
+-- 순서 *중요* (sql은 select가 먼저)
+-- 1. FROM
+-- 2. WHERE
+-- 3. ORDER BY
+-- 4. SELECT
+
 alter table jeju add above_avg_spd boolean;
 alter table jeju add above_avg_dir boolean;
 alter table jeju add null_column1 double;
@@ -90,3 +96,27 @@ select * from jeju where speed_80m > 4 or direction_50m < 180;
 
 -- XOR : 좌항과 우항이 다르면 true
 select * from jeju where speed_80m > 4 xor direction_50m < 180;
+
+-- LIKE 연산자 : 문자열을 비교할 때 패턴을 기준으로 비교
+
+-- % : 임의의 개수(0 ~ 무한대)의 문자
+-- _ : 임의의 한 개 문자
+select * from jeju where observe_date Like '20%';
+select * from jeju where observe_date Like '%08';
+select * from jeju where observe_date Like '%08%';
+select * from jeju where observe_date like '20_';
+select * from jeju where observe_date like '2023-__-08';
+
+-- 정렬
+-- ORDER BY : 쿼리 결과 기준으로 정렬
+-- ASC : 오름차순 정렬
+-- DESC : 내림차순 정렬
+select * from jeju order by speed_80m asc;
+select * from jeju order by speed_80m desc;
+select observe_date from jeju order by speed_80m desc;
+
+-- 중복제거
+-- DISTINCT : SELECT 결과 테이블에서 컬럼의 조합의 중복을 제거하여 출력
+select distinct above_avg_spd from jeju;
+select distinct above_avg_spd, above_avg_dir from jeju;
+select distinct * from jeju; -- 의미없음
