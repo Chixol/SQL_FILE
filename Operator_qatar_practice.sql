@@ -57,3 +57,4 @@ delete from country where name = '요르단';
 select * from country;
 
 select * from player;
+
